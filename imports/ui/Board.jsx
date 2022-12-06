@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-export const Board = () => {
+export const Board = () => {  
+    let [cell, setCell] = useState()
     const handleClick = (e) => {
         if (e.target.textContent === "") {
             e.target.textContent = "X"
@@ -8,18 +9,36 @@ export const Board = () => {
             e.target.textContent = "O"
         }
     }
+    const startGame = () => {
+       
+    }
+
+    const resetGame = () => {
+        setCell(cell = "" )      
+    }
 
     return (
-        <div className='board'>
-            <div className='board--box' onClick={handleClick}>1</div>
-            <div className='board--box' onClick={handleClick}>2</div>
-            <div className='board--box' onClick={handleClick}>3</div>
-            <div className='board--box' onClick={handleClick}>4</div>
-            <div className='board--box' onClick={handleClick}>5</div>
-            <div className='board--box' onClick={handleClick}>6</div>
-            <div className='board--box' onClick={handleClick}>7</div>
-            <div className='board--box' onClick={handleClick}>8</div>
-            <div className='board--box' onClick={handleClick}>9</div>
+        <div>
+            <div className='gametext'>Play against computer!</div>
+            <div className='board'>
+                <div className='board--box' onClick={handleClick}>{cell}</div>
+                <div className='board--box' onClick={handleClick}>{cell}</div>
+                <div className='board--box' onClick={handleClick}>{cell}</div>
+                <div className='board--box' onClick={handleClick}>{cell}</div>
+                <div className='board--box' onClick={handleClick}>{cell}</div>
+                <div className='board--box' onClick={handleClick}>{cell}</div>
+                <div className='board--box' onClick={handleClick}>{cell}</div>
+                <div className='board--box' onClick={handleClick}>{cell}</div>
+                <div className='board--box' onClick={handleClick}>{cell}</div>
+            </div>
+                <div className="playersbutton">
+                    <div className='button'>
+                        <div className='player1'>HUMAN</div>
+                            <button onClick={startGame}>START</button>
+                            <button onClick={resetGame}>RESET</button>
+                        <div className='player2'>COMPUTER</div> 
+                    </div>
+                </div>
         </div>
     )
 }
