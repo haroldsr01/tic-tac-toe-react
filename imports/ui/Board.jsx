@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 export const Board = () => {  
 // set initial state of player1
@@ -21,43 +21,37 @@ export const Board = () => {
         [2,4,6]
     ]
     const arrInputX = []
+    const arrInputO = []
     const AI = () => {
-        let arrMatch = [] 
-        let arrMatchIndex = []       
-        for (let i = 0; i<winXCombination.length; i++ ){
-            for (let j = 0; j<winXCombination[i].length; j++){
-                for (let h = 0; h<arrInputX.length; h++) {
-                     if(Number(arrInputX[h]) === winXCombination[i][j] ){           
-                        if (!arrMatchIndex.includes(i)) {
-                            arrMatchIndex.push(i)
-                            arrMatch.push(winXCombination[i])
-                        }                        
-                    }           
-                }
-            }
+        let random = Math.floor(Math.random()*9)
+        for (let i = 0; i<9; i++){
+            if (arrInputX.includes(random)){break}            
         }
-        for (let l=0; l<arrMatch.length; l++){
-            for (let k = 0; k<arrMatch[l].length; k++){
-                for (let m=0; m<arrInputX.length; m++) {
-                    if (Number(arrInputX[m]) === arrMatch[l][k]) {
-                        if (Number(arrInputX[m]) === 1 ){
-                            console.log(arrInputX[m])
-
-                        }
-                        // console.log(arrMatchIndex)
-
-                        // console.log(arrMatch)
-                        // console.log(arrMatch.length)
-                        // console.log(arrMatch[0].length)
-                    }
-                }
-            }
-        }
+        // let arrMatch = [] 
+        // let arrMatchIndex = []       
+        // for (let i = 0; i<winXCombination.length; i++ ){
+        //     for (let j = 0; j<winXCombination[i].length; j++){
+        //         for (let h = 0; h<arrInputX.length; h++) {
+        //              if(arrInputX[h] === winXCombination[i][j] ){           
+        //                 if (!arrMatchIndex.includes(i)) {
+        //                     arrMatchIndex.push(i)
+        //                     arrMatch.push(winXCombination[i])                            
+        //                 }                        
+        //             }           
+        //         }
+        //     }
+        // }
+        //     console.log(arrMatch)
+        //     console.log(arrMatchIndex)
+        //     console.log(arrInputX)      
     }
-    const handleClick = (e) => {       
-        let i = e.target.id[5]        
-        arrInputX.push(i)                 
-        AI()
+    const handleClick = (e) => { 
+        let i = Number(e.target.id[5])              
+        if(!arrInputX.includes(i)){
+            arrInputX.push(Number(i))           
+            e.target.textContent = "X"      
+            AI()
+        }      
     }
 
     const startGame = () => {
@@ -77,7 +71,7 @@ export const Board = () => {
 
     return (
         <div>
-            {/* <div className='gametext'>Play against computer!</div> */}
+            <div className='gametext'>Play against computer!</div>
             <div className='board'>
                 <div className='board--box' onClick={handleClick} id="cell-0">0</div>
                 <div className='board--box' onClick={handleClick} id="cell-1">1</div>
