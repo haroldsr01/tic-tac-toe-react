@@ -1,10 +1,10 @@
 import React from 'react';
 import { Board } from './Board.jsx';
-
+import { Header } from './Header.jsx';
 
 export const App = () => (
-  <div>
-    <h1>TIC-TAC-TOE GAME</h1>
+  <div>    
+    <Header />
     <Board />
   </div>
 );

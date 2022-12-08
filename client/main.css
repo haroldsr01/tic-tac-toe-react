@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -8,13 +10,9 @@ body {
   font-family: sans-serif;
 }
 
-h1 {
-  text-align: center;  
-}
-
-.gametext {
-  text-align: center;
-  font-size: 2rem;
+header {  
+  text-align: center; 
+  font-family: 'Rubik Vinyl', cursive, sans-serif;
 }
 
 .board {

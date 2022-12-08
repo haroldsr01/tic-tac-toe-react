@@ -8,7 +8,7 @@ export const Board = () => {
     let currentPlayer = playerX
     const msgWinner = ['You Win', "Congratulations!!!","You've got some skills","Impossible, you beat me!"]   
     const msgLosser = ['You Lose', 'AI will conquer the world', 'Better Luck Next Time', 'Practice More Human']
-    const winXCombination =[
+    const winCombination =[
         [0,1,2],
         [3,4,5],
         [6,7,8],
@@ -27,13 +27,13 @@ export const Board = () => {
     //     }
     //     // let arrMatch = [] 
     //     // let arrMatchIndex = []       
-    //     // for (let i = 0; i<winXCombination.length; i++ ){
-    //     //     for (let j = 0; j<winXCombination[i].length; j++){
+    //     // for (let i = 0; i<winCombination.length; i++ ){
+    //     //     for (let j = 0; j<winCombination[i].length; j++){
     //     //         for (let h = 0; h<arrInputX.length; h++) {
-    //     //              if(arrInputX[h] === winXCombination[i][j] ){           
+    //     //              if(arrInputX[h] === winCombination[i][j] ){           
     //     //                 if (!arrMatchIndex.includes(i)) {
     //     //                     arrMatchIndex.push(i)
-    //     //                     arrMatch.push(winXCombination[i])                            
+    //     //                     arrMatch.push(winCombination[i])                            
     //     //                 }                        
     //     //             }           
     //     //         }
@@ -50,7 +50,7 @@ export const Board = () => {
             arrInputX.push(Number(i))           
             e.target.textContent = "X"      
             // AI()
-            chkCombi(winXCombination,arrInputX)
+            chkCombi(winCombination,arrInputX)
             switchTurn()
         }      
     } else if (isAlive === true){
@@ -59,7 +59,7 @@ export const Board = () => {
             arrInputO.push(Number(i))           
             e.target.textContent = "O"      
             // AI()            
-            chkCombi(winXCombination,arrInputO)
+            chkCombi(winCombination,arrInputO)
             switchTurn()
     }
 }
@@ -99,8 +99,8 @@ export const Board = () => {
 
     return (
         <div>
-            <div className='gametext'>Play against computer!</div>
-            <div className='board'>
+            {/* <div className='gametext'>Play against computer!</div> */}
+            {/* <div className='board'>
                 <div className='board--box' onClick={handleClick} id="cell-0"></div>
                 <div className='board--box' onClick={handleClick} id="cell-1"></div>
                 <div className='board--box' onClick={handleClick} id="cell-2"></div>
@@ -110,15 +110,15 @@ export const Board = () => {
                 <div className='board--box' onClick={handleClick} id="cell-6"></div>
                 <div className='board--box' onClick={handleClick} id="cell-7"></div>
                 <div className='board--box' onClick={handleClick} id="cell-8"></div>                
-            </div>
-            <div className="playersbutton">
+            </div> */}
+            {/* <div className="playersbutton">
                 <div className='button'>
                     <div className='player1'></div>                        
                         <button onClick={startGame} id="startbutton">START</button>
                         <button onClick={resetGame} id="resetbutton">RESET</button>
                     <div className='player2'></div> 
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
