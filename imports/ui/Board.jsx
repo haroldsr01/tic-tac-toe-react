@@ -6,6 +6,7 @@ export const Board = () => {
     const computer = "O"
     let isAlive = false;
     let isPlayerTurn = false;
+    let isHuman = true;
     const msgWinner = ['You Win', "Congratulations!!!","You've got some skills","Impossible, you beat me!"]   
     const msgLosser = ['You Lose', 'AI will conquer the world', 'Better Luck Next Time', 'Practice More Human']
     const maxInputX = 5;
@@ -22,37 +23,82 @@ export const Board = () => {
     ]
     const arrInputX = []
     const arrInputO = []
-    const AI = () => {
-        let random = Math.floor(Math.random()*9)
-        for (let i = 0; i<9; i++){
-            if (arrInputX.includes(random)){break}            
-        }
-        // let arrMatch = [] 
-        // let arrMatchIndex = []       
-        // for (let i = 0; i<winXCombination.length; i++ ){
-        //     for (let j = 0; j<winXCombination[i].length; j++){
-        //         for (let h = 0; h<arrInputX.length; h++) {
-        //              if(arrInputX[h] === winXCombination[i][j] ){           
-        //                 if (!arrMatchIndex.includes(i)) {
-        //                     arrMatchIndex.push(i)
-        //                     arrMatch.push(winXCombination[i])                            
-        //                 }                        
-        //             }           
-        //         }
-        //     }
-        // }
-        //     console.log(arrMatch)
-        //     console.log(arrMatchIndex)
-        //     console.log(arrInputX)      
-    }
+    // const AI = () => {
+    //     let random = Math.floor(Math.random()*9)
+    //     for (let i = 0; i<9; i++){
+    //         if (arrInputX.includes(random)){break}            
+    //     }
+    //     // let arrMatch = [] 
+    //     // let arrMatchIndex = []       
+    //     // for (let i = 0; i<winXCombination.length; i++ ){
+    //     //     for (let j = 0; j<winXCombination[i].length; j++){
+    //     //         for (let h = 0; h<arrInputX.length; h++) {
+    //     //              if(arrInputX[h] === winXCombination[i][j] ){           
+    //     //                 if (!arrMatchIndex.includes(i)) {
+    //     //                     arrMatchIndex.push(i)
+    //     //                     arrMatch.push(winXCombination[i])                            
+    //     //                 }                        
+    //     //             }           
+    //     //         }
+    //     //     }
+    //     // }
+    //     //     console.log(arrMatch)
+    //     //     console.log(arrMatchIndex)
+    //     //     console.log(arrInputX)      
+    // }
     const handleClick = (e) => { 
         let i = Number(e.target.id[5])              
         if(!arrInputX.includes(i)){
             arrInputX.push(Number(i))           
             e.target.textContent = "X"      
-            AI()
+            // AI()
+            chkCombi()
         }      
     }
+
+    const chkCombi = () =>{
+        // const ar1 = ['a', 'b'];
+        // const ar2 = ['c', 'd', 'a', 'z', 'g', 'b'];
+
+        // if(ar1.every(r => ar2.includes(r))){
+        // console.log('Found all of', ar1, 'in', ar2);
+        // }else{
+        // console.log('Did not find all of', ar1, 'in', ar2);
+        // }
+        for (let i=0; i<winXCombination.length; i++){
+            if (winXCombination[i].every(el => arrInputX.includes(el))){
+                console.log('Found all of', winXCombination[i], "in", arrInputX)
+            } else {
+                console.log("Did not find all of", winXCombination[i], 'in', arrInputX)
+            }
+        }
+
+        // let matches = []
+        // let matchesIndex = []
+        
+        // for(let i = 0; i<winXCombination.length; i++){
+        //     for(let j = 0; j<arrInputX.length; j++){
+        //         if (winXCombination[i].includes(arrInputX[j])){
+        //                 if(!matchesIndex.includes(i)){
+        //                     matches.push(winXCombination[i])
+        //                     matchesIndex.push(i)
+        //                     console.log("You win!")
+        //                     console.log(matches)
+        //                     console.log(matchesIndex)
+                            
+        //                 }
+        //             } else { console.log ("you lose")}            
+
+        //     }
+        // }       
+    }
+    
+    // const chkIncludes = (array, element) =>{
+    //     let chkResult = array.includes(element)
+    //     console.log(chkResult)
+    //     return chkResult
+    // }
+
 
     const startGame = () => {
        isAlive = true; 
