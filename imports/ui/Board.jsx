@@ -20,7 +20,8 @@ export const Board = () => {
     ]
     const arrInputX = []
     const arrInputO = []
-    const [cell, setCell]  = useState("")
+    const [cell, setCell]  = useState(1)
+    const [message, setMessage] = useState(msgWinner)
     // const AI = () => {
     //     let random = Math.floor(Math.random()*9)
     //     for (let i = 0; i<9; i++){
@@ -51,7 +52,7 @@ export const Board = () => {
             arrInputX.push(Number(i))           
             e.target.textContent = "X"      
             // AI()
-            // setCell("X")
+            // setCell("3")
             chkCombi(winCombination,arrInputX)
             switchTurn()
         }      
@@ -90,19 +91,22 @@ export const Board = () => {
     
     const startGame = () => {
        isAlive = true; 
-       arrInputX.length = 0;
-       arrInputO.length = 0;    
+    //    arrInputX.length = 0;
+    //    arrInputO.length = 0;    
+    //    setCell("3")
     //    setCell()
     //    console.log(cell)
     }
     
     const resetGame = () => {
-        startGame();       
+        window.location.reload()   
+        // setCell  
     }
     
     const showmsg = () => {
         let message = msgWinner[randomNum(msgWinner)]+currentPlayer
         return message
+
     }
 
     

@@ -49,6 +49,10 @@ header {
   align-items: center;  
 }
 
+.board--box:hover{
+  background-color: #4CAF50;
+  color: white;
+}
 .playersbutton {
   /* position: absolute; 
   top: 0;   */
@@ -75,4 +79,9 @@ button {
   height: 70px;
   font-family: 'Rubik Vinyl', cursive, sans-serif;
   border-radius: 10px;
+}
+
+button:hover {
+  background-color: #34495e;
+  color: #fff;
 }
