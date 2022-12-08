@@ -44,8 +44,8 @@ export const Board = () => {
     //     //     console.log(arrInputX)      
     // }
     const handleClick = (e) => {        
-        if(currentPlayer === playerX && isAlive === true) {
         let i = Number(e.target.id[5])              
+        if(currentPlayer === playerX && isAlive === true && !arrInputO.includes(i) && !arrInputX.includes(i)) {
         if(!arrInputX.includes(i)){
             arrInputX.push(Number(i))           
             e.target.textContent = "X"      
@@ -53,7 +53,7 @@ export const Board = () => {
             chkCombi(winCombination,arrInputX)
             switchTurn()
         }      
-    } else if (isAlive === true){
+    } else if (currentPlayer === playerO && isAlive === true && !arrInputO.includes(i) && !arrInputX.includes(i)){
         let i = Number(e.target.id[5])              
         if(!arrInputO.includes(i)){
             arrInputO.push(Number(i))           
