@@ -98,7 +98,7 @@ export const Board = () => {
     }
 
     return (
-        <div>
+        <div className="container">
             {/* <div className='gametext'>Play against computer!</div> */}
             <div className='board'>
                 <div className='board--box' onClick={handleClick} id="cell-0"></div>
@@ -112,11 +112,11 @@ export const Board = () => {
                 <div className='board--box' onClick={handleClick} id="cell-8"></div>                
             </div>
             <div className="playersbutton">
-                <div className='button'>
-                    <div className='player1'></div>                        
+                <div className='button-area'>                    
                         <button onClick={startGame} id="startbutton">START</button>
                         <button onClick={resetGame} id="resetbutton">RESET</button>
-                    <div className='player2'></div> 
+                        <button id="humanbutton">VS HUMAN</button>
+                        {/* <button id="aibutton">VS AI</button> */}
                 </div>
             </div>
         </div>

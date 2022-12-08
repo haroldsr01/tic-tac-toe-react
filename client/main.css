@@ -10,6 +10,9 @@ body {
   font-family: sans-serif;
 }
 
+.container {
+  position: relative;
+}
 header {  
   text-align: center; 
   font-family: 'Rubik Vinyl', cursive, sans-serif;
@@ -39,9 +42,30 @@ header {
   align-items: center;  
 }
 
-.button {
+.playersbutton {
+  /* position: absolute; 
+  top: 0;   */
+}
+
+.button-area {
   display: flex;
   justify-content: center;
   align-items: center;  
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
+  flex-direction: column;
+  row-gap: 10px;
+  position: absolute;
+  top: 20px;
+  width: 100vw;
+
+  /* width: 350px;
+  height: 350px; */
+}
+
+button {
+  padding: 10px 20px;
+  width: 200px;
+  height: 70px;
+  font-family: 'Rubik Vinyl', cursive, sans-serif;
+  border-radius: 10px;
 }
