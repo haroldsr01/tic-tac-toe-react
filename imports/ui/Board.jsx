@@ -20,7 +20,7 @@ export const Board = () => {
     ]
     const arrInputX = []
     const arrInputO = []
-    
+    const [cell, setCell]  = useState("")
     // const AI = () => {
     //     let random = Math.floor(Math.random()*9)
     //     for (let i = 0; i<9; i++){
@@ -51,6 +51,7 @@ export const Board = () => {
             arrInputX.push(Number(i))           
             e.target.textContent = "X"      
             // AI()
+            // setCell("X")
             chkCombi(winCombination,arrInputX)
             switchTurn()
         }      
@@ -59,6 +60,7 @@ export const Board = () => {
         if(!arrInputO.includes(i)){
             arrInputO.push(Number(i))           
             e.target.textContent = "O"      
+            // setCell("O")
             // AI()            
             chkCombi(winCombination,arrInputO)
             switchTurn()
@@ -85,13 +87,13 @@ export const Board = () => {
         currentPlayer = playerX        
        }
     }  
-    const [cell, setCell]  = useState(0)
+    
     const startGame = () => {
        isAlive = true; 
        arrInputX.length = 0;
        arrInputO.length = 0;    
-       setCell("")
-       console.log(cell)
+    //    setCell()
+    //    console.log(cell)
     }
     
     const resetGame = () => {
@@ -109,8 +111,8 @@ export const Board = () => {
         <div className="container">
             <div className='message'>{'play your luck' || 'beat the heat'}</div>
             <div className='board'>
-                <div className='board--box' onClick={handleClick} id="cell-0">{cell}</div>
-                <div className='board--box' onClick={handleClick} id="cell-1">{cell}</div>
+                <div className='board--box' onClick={handleClick} id="cell-0"></div>
+                <div className='board--box' onClick={handleClick} id="cell-1"></div>
                 <div className='board--box' onClick={handleClick} id="cell-2"></div>
                 <div className='board--box' onClick={handleClick} id="cell-3"></div>
                 <div className='board--box' onClick={handleClick} id="cell-4"></div>
