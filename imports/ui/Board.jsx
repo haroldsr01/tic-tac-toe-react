@@ -20,6 +20,7 @@ export const Board = () => {
     ]
     const arrInputX = []
     const arrInputO = []
+    
     // const AI = () => {
     //     let random = Math.floor(Math.random()*9)
     //     for (let i = 0; i<9; i++){
@@ -72,11 +73,11 @@ export const Board = () => {
         for (let i=0; i<arrWin.length; i++){
             if (arrWin[i].every(el => playerInput.includes(el))){      
                 isAlive = false;          
-                console.log(msgWinner[randomNum(msgWinner)]+currentPlayer)
+                showmsg()                          
+                
             } 
         }
     }    
-
     const switchTurn = () => {
        if (currentPlayer === playerX){
         currentPlayer = playerO        
@@ -84,25 +85,32 @@ export const Board = () => {
         currentPlayer = playerX        
        }
     }  
-    // const [cell, setCell]  = useState()
+    const [cell, setCell]  = useState(0)
     const startGame = () => {
        isAlive = true; 
        arrInputX.length = 0;
        arrInputO.length = 0;    
-    //    setCell("")
-    //    console.log(cell)
+       setCell("")
+       console.log(cell)
     }
     
     const resetGame = () => {
         startGame();       
     }
+    
+    const showmsg = () => {
+        let message = msgWinner[randomNum(msgWinner)]+currentPlayer
+        return message
+    }
 
+    
+    
     return (
         <div className="container">
-            {/* <div className='gametext'>Play against computer!</div> */}
+            <div className='message'>{'play your luck' || 'beat the heat'}</div>
             <div className='board'>
-                <div className='board--box' onClick={handleClick} id="cell-0"></div>
-                <div className='board--box' onClick={handleClick} id="cell-1"></div>
+                <div className='board--box' onClick={handleClick} id="cell-0">{cell}</div>
+                <div className='board--box' onClick={handleClick} id="cell-1">{cell}</div>
                 <div className='board--box' onClick={handleClick} id="cell-2"></div>
                 <div className='board--box' onClick={handleClick} id="cell-3"></div>
                 <div className='board--box' onClick={handleClick} id="cell-4"></div>
@@ -116,7 +124,7 @@ export const Board = () => {
                         <button onClick={startGame} id="startbutton">START</button>
                         <button onClick={resetGame} id="resetbutton">RESET</button>
                         <button id="humanbutton">VS HUMAN</button>
-                        {/* <button id="aibutton">VS AI</button> */}
+                        <button id="aibutton">VS AI</button>
                 </div>
             </div>
         </div>
