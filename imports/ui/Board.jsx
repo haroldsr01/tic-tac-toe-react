@@ -111,14 +111,14 @@ export const Board = () => {
                 <div className='board--box' onClick={handleClick} id="cell-7"></div>
                 <div className='board--box' onClick={handleClick} id="cell-8"></div>                
             </div>
-            {/* <div className="playersbutton">
+            <div className="playersbutton">
                 <div className='button'>
                     <div className='player1'></div>                        
                         <button onClick={startGame} id="startbutton">START</button>
                         <button onClick={resetGame} id="resetbutton">RESET</button>
                     <div className='player2'></div> 
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }
