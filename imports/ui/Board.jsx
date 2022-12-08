@@ -100,7 +100,7 @@ export const Board = () => {
     return (
         <div>
             {/* <div className='gametext'>Play against computer!</div> */}
-            {/* <div className='board'>
+            <div className='board'>
                 <div className='board--box' onClick={handleClick} id="cell-0"></div>
                 <div className='board--box' onClick={handleClick} id="cell-1"></div>
                 <div className='board--box' onClick={handleClick} id="cell-2"></div>
@@ -110,7 +110,7 @@ export const Board = () => {
                 <div className='board--box' onClick={handleClick} id="cell-6"></div>
                 <div className='board--box' onClick={handleClick} id="cell-7"></div>
                 <div className='board--box' onClick={handleClick} id="cell-8"></div>                
-            </div> */}
+            </div>
             {/* <div className="playersbutton">
                 <div className='button'>
                     <div className='player1'></div>                        
