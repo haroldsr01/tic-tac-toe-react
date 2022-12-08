@@ -1,16 +1,13 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 export const Board = () => {  
 // set initial state of player1
-    const human = "X"
-    const computer = "O"
+    const playerX = "X"
+    const playerO = "O"
     let isAlive = false;
-    let isPlayerTurn = false;
-    let isHuman = true;
+    let currentPlayer = playerX
     const msgWinner = ['You Win', "Congratulations!!!","You've got some skills","Impossible, you beat me!"]   
     const msgLosser = ['You Lose', 'AI will conquer the world', 'Better Luck Next Time', 'Practice More Human']
-    const maxInputX = 5;
-    const maxInputO = 4;
     const winXCombination =[
         [0,1,2],
         [3,4,5],
@@ -46,95 +43,80 @@ export const Board = () => {
     //     //     console.log(arrMatchIndex)
     //     //     console.log(arrInputX)      
     // }
-    const handleClick = (e) => { 
+    const handleClick = (e) => {        
+        if(currentPlayer === playerX && isAlive === true) {
         let i = Number(e.target.id[5])              
         if(!arrInputX.includes(i)){
             arrInputX.push(Number(i))           
             e.target.textContent = "X"      
             // AI()
-            chkCombi()
+            chkCombi(winXCombination,arrInputX)
+            switchTurn()
         }      
+    } else if (isAlive === true){
+        let i = Number(e.target.id[5])              
+        if(!arrInputO.includes(i)){
+            arrInputO.push(Number(i))           
+            e.target.textContent = "O"      
+            // AI()            
+            chkCombi(winXCombination,arrInputO)
+            switchTurn()
     }
+}
 
-    const chkCombi = () =>{
-        // const ar1 = ['a', 'b'];
-        // const ar2 = ['c', 'd', 'a', 'z', 'g', 'b'];
-
-        // if(ar1.every(r => ar2.includes(r))){
-        // console.log('Found all of', ar1, 'in', ar2);
-        // }else{
-        // console.log('Did not find all of', ar1, 'in', ar2);
-        // }
-        for (let i=0; i<winXCombination.length; i++){
-            if (winXCombination[i].every(el => arrInputX.includes(el))){
-                console.log('Found all of', winXCombination[i], "in", arrInputX)
-            } else {
-                console.log("Did not find all of", winXCombination[i], 'in', arrInputX)
-            }
+}
+    const randomNum = (array) => {
+        return Math.floor(Math.random()*array.length)
+    }
+    const chkCombi = (arrWin,playerInput) =>{
+        for (let i=0; i<arrWin.length; i++){
+            if (arrWin[i].every(el => playerInput.includes(el))){      
+                isAlive = false;          
+                console.log(msgWinner[randomNum(msgWinner)]+currentPlayer)
+            } 
         }
+    }    
 
-        // let matches = []
-        // let matchesIndex = []
-        
-        // for(let i = 0; i<winXCombination.length; i++){
-        //     for(let j = 0; j<arrInputX.length; j++){
-        //         if (winXCombination[i].includes(arrInputX[j])){
-        //                 if(!matchesIndex.includes(i)){
-        //                     matches.push(winXCombination[i])
-        //                     matchesIndex.push(i)
-        //                     console.log("You win!")
-        //                     console.log(matches)
-        //                     console.log(matchesIndex)
-                            
-        //                 }
-        //             } else { console.log ("you lose")}            
-
-        //     }
-        // }       
-    }
-    
-    // const chkIncludes = (array, element) =>{
-    //     let chkResult = array.includes(element)
-    //     console.log(chkResult)
-    //     return chkResult
-    // }
-
-
+    const switchTurn = () => {
+       if (currentPlayer === playerX){
+        currentPlayer = playerO        
+       } else {
+        currentPlayer = playerX        
+       }
+    }  
+    // const [cell, setCell]  = useState()
     const startGame = () => {
        isAlive = true; 
-       isPlayerTurn = true;       
-       console.log(arrInputX)       
-       console.log(isAlive)
-       console.log(isPlayerTurn)
+       arrInputX.length = 0;
+       arrInputO.length = 0;    
+    //    setCell("")
+    //    console.log(cell)
     }
     
     const resetGame = () => {
-        isAlive = false;
-        isPlayerTurn = false;     
-        console.log(isAlive)
-        console.log(isPlayerTurn)
+        startGame();       
     }
 
     return (
         <div>
             <div className='gametext'>Play against computer!</div>
             <div className='board'>
-                <div className='board--box' onClick={handleClick} id="cell-0">0</div>
-                <div className='board--box' onClick={handleClick} id="cell-1">1</div>
-                <div className='board--box' onClick={handleClick} id="cell-2">2</div>
-                <div className='board--box' onClick={handleClick} id="cell-3">3</div>
-                <div className='board--box' onClick={handleClick} id="cell-4">4</div>
-                <div className='board--box' onClick={handleClick} id="cell-5">5</div>
-                <div className='board--box' onClick={handleClick} id="cell-6">6</div>
-                <div className='board--box' onClick={handleClick} id="cell-7">7</div>
-                <div className='board--box' onClick={handleClick} id="cell-8">8</div>                
+                <div className='board--box' onClick={handleClick} id="cell-0"></div>
+                <div className='board--box' onClick={handleClick} id="cell-1"></div>
+                <div className='board--box' onClick={handleClick} id="cell-2"></div>
+                <div className='board--box' onClick={handleClick} id="cell-3"></div>
+                <div className='board--box' onClick={handleClick} id="cell-4"></div>
+                <div className='board--box' onClick={handleClick} id="cell-5"></div>
+                <div className='board--box' onClick={handleClick} id="cell-6"></div>
+                <div className='board--box' onClick={handleClick} id="cell-7"></div>
+                <div className='board--box' onClick={handleClick} id="cell-8"></div>                
             </div>
             <div className="playersbutton">
                 <div className='button'>
-                    <div className='player1'>HUMAN</div>
+                    <div className='player1'></div>                        
                         <button onClick={startGame} id="startbutton">START</button>
                         <button onClick={resetGame} id="resetbutton">RESET</button>
-                    <div className='player2'>COMPUTER</div> 
+                    <div className='player2'></div> 
                 </div>
             </div>
         </div>
