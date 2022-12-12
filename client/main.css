@@ -85,3 +85,22 @@ button:hover {
   background-color: #34495e;
   color: #fff;
 }
+
+button:focus {
+  background-color: #34495e;
+}
+
+.box {
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  display: inline-block;
+  margin-right: 4px;
+  border-radius: 5px;
+  background-color: black;
+}
+
+.box:hover {
+  background-color: #4CAF50;
+  color: blueviolet;
+}

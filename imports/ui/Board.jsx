@@ -19,9 +19,13 @@ export const Board = () => {
         [2,4,6]
     ]
     const arrInputX = []
-    const arrInputO = []
-    const [cell, setCell]  = useState(1)
+    const arrInputO = []  
+    const [cell, setCell]  = useState(()=>undefined)
     const [message, setMessage] = useState(msgWinner)
+
+    const AI = () => {
+
+    }
     // const AI = () => {
     //     let random = Math.floor(Math.random()*9)
     //     for (let i = 0; i<9; i++){
@@ -50,11 +54,12 @@ export const Board = () => {
         if(currentPlayer === playerX && isAlive === true && !arrInputO.includes(i) && !arrInputX.includes(i)) {
         if(!arrInputX.includes(i)){
             arrInputX.push(Number(i))           
-            e.target.textContent = "X"      
+            e.target.textContent = setCell(previous => previous===undefined && "X")      
             // AI()
-            // setCell("3")
             chkCombi(winCombination,arrInputX)
             switchTurn()
+            console.log(cell)
+            console.log(arrInputX)
         }      
     } else if (currentPlayer === playerO && isAlive === true && !arrInputO.includes(i) && !arrInputX.includes(i)){
         let i = Number(e.target.id[5])              
@@ -93,14 +98,14 @@ export const Board = () => {
        isAlive = true; 
     //    arrInputX.length = 0;
     //    arrInputO.length = 0;    
-    //    setCell("3")
+       setCell(previous => previous)
     //    setCell()
     //    console.log(cell)
     }
     
     const resetGame = () => {
-        window.location.reload()   
-        // setCell  
+        // window.location.reload()   
+        setCell (previous => previous==="X" && undefined) 
     }
     
     const showmsg = () => {
@@ -108,29 +113,28 @@ export const Board = () => {
         return message
 
     }
-
     
     
     return (
         <div className="container">
             <div className='message'>{'play your luck' || 'beat the heat'}</div>
             <div className='board'>
-                <div className='board--box' onClick={handleClick} id="cell-0"></div>
-                <div className='board--box' onClick={handleClick} id="cell-1"></div>
-                <div className='board--box' onClick={handleClick} id="cell-2"></div>
-                <div className='board--box' onClick={handleClick} id="cell-3"></div>
-                <div className='board--box' onClick={handleClick} id="cell-4"></div>
-                <div className='board--box' onClick={handleClick} id="cell-5"></div>
-                <div className='board--box' onClick={handleClick} id="cell-6"></div>
-                <div className='board--box' onClick={handleClick} id="cell-7"></div>
-                <div className='board--box' onClick={handleClick} id="cell-8"></div>                
+                <div className='board--box' onClick={handleClick} id="cell-0">{cell}</div>
+                <div className='board--box' onClick={handleClick} id="cell-1">{cell}</div>
+                <div className='board--box' onClick={handleClick} id="cell-2">{cell}</div>
+                <div className='board--box' onClick={handleClick} id="cell-3">{cell}</div>
+                <div className='board--box' onClick={handleClick} id="cell-4">{cell}</div>
+                <div className='board--box' onClick={handleClick} id="cell-5">{cell}</div>
+                <div className='board--box' onClick={handleClick} id="cell-6">{cell}</div>
+                <div className='board--box' onClick={handleClick} id="cell-7">{cell}</div>
+                <div className='board--box' onClick={handleClick} id="cell-8">{cell}</div>                
             </div>
             <div className="playersbutton">
                 <div className='button-area'>                    
                         <button onClick={startGame} id="startbutton">START</button>
                         <button onClick={resetGame} id="resetbutton">RESET</button>
                         <button id="humanbutton">VS HUMAN</button>
-                        <button id="aibutton">VS AI</button>
+                        <button id="aibutton" >VS AI</button>
                 </div>
             </div>
         </div>
