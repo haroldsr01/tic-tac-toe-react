@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Rubik+Vinyl&display=swap');
 
 * {
   margin: 0;
@@ -19,6 +19,7 @@ header {
 }
 
 .message {  
+  font-family: 'Play', sans-serif;
   text-align: center;
   font-size: 1em;
   line-height: 3em;
@@ -90,17 +91,32 @@ button:focus {
   background-color: #34495e;
 }
 
-.box {
-  height: 100px;
-  width: 100px;
-  border: 1px solid black;
-  display: inline-block;
-  margin-right: 4px;
-  border-radius: 5px;
-  background-color: black;
+.cellbox {
+  margin: 0 auto;
+  width: 100vw;
+  max-width: 350px;
+  height: 350px;
+  display: grid;
+  grid-template-columns: repeat(3, 33.33%);
+  grid-template-rows: repeat(3, 33.33%);
+  background-color: #34495e;
+  color: #fff;
+  border: 6px solid #2c3e50;
+  border-radius: 10px;
 }
 
-.box:hover {
+.cells {
+  border: 6px solid #2c3e50;
+  border-radius: 2px;
+  font-family: Helvetica;
+  font-weight: bold;
+  font-size: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+.cells:hover {
   background-color: #4CAF50;
-  color: blueviolet;
+  color: white;
 }
