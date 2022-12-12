@@ -23,7 +23,7 @@ const [cells, setCell] = React.useState([
 ])
 
 const msgWinner = ['You Win', "Congratulations!!!","You've got some skills","Impossible, you beat me!"]     
-const msgClicks = ['Aha!', 'Gotcha', 'Nice', 'Excellent', 'I know it', 'Super Nice']
+const msgClicks = ['Aha!', 'Gotcha', 'Nice', 'Excellent', 'I know it', 'Super Nice', 'Wonderful', 'Awesome']
 const winCombination =[
     [0,1,2],
     [3,4,5],
@@ -58,7 +58,8 @@ const handleClick = (id) => {
           return cell.id === id ?{...cell, value: "X"} : cell
         })
       })
-      chkCombi(winCombination,arrInputX.current)      
+      chkCombi(winCombination,arrInputX.current)    
+      chkDraw()  
       }
     } else if (currentPlayer.current === playerO && isAlive.current === true && !arrInputX.current.includes(id) && !arrInputO.current.includes(id)){
       if (!arrInputO.current.includes(id)){
@@ -71,6 +72,7 @@ const handleClick = (id) => {
           })
         })
         chkCombi(winCombination,arrInputO.current)        
+        chkDraw()  
     }
   }}
 }
@@ -111,6 +113,12 @@ const chkCombi = (arrWin,playerInput) =>{
     } 
   }
 }    
+
+const chkDraw = () => {
+  if (arrInputX.current.length + arrInputO.current.length === 9){
+    showmsg(["DRAW"])
+  }
+}
 
 const showmsg = (arrMsg) => {
   let message = arrMsg[randomNum(arrMsg)]
