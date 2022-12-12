@@ -42,6 +42,11 @@ const [showMessage, setShowMessage] = React.useState("Just for Fun")
 // FUNCTIONS
 
 const handleClick = (id) => {    
+  if (isAlive.current === false && arrInputX.current.length === 0){
+    showmsg(["Please click 'Start'"])
+  } else if (isAlive.current === false && arrInputX.current.length > 0){
+    showmsg(["Please click 'Reset'"])
+  } else {
   if (currentPlayer.current === playerX && isAlive.current === true && !arrInputX.current.includes(id) && !arrInputO.current.includes(id)){
     if (!arrInputX.current.includes(id)){
       console.log("test@handleClick")
@@ -67,19 +72,22 @@ const handleClick = (id) => {
         })
         chkCombi(winCombination,arrInputO.current)        
     }
-  }
+  }}
 }
 const switchTurn = () => {    
   currentPlayer.current === playerX ? currentPlayer.current = playerO : currentPlayer.current = playerX           
 }  
 
 const startGame = () => {
-  isAlive.current = true;
-  console.log(isAlive)
+  if (arrInputX.current.length === 0){ 
+    isAlive.current = true
+    showmsg(['Play for FUN'])  
+} else {
+    showmsg(["Please click 'Reset' instead"])}
 }
 
 const resetGame = () => {
-  isAlive.current = false;
+  isAlive.current = true;
   currentPlayer.current = playerX;
   arrInputX.current = []
   arrInputO.current = []
