@@ -48,7 +48,7 @@ export const UserReg = () => {
             <div className="hrline">
                 <span>OR</span>
             </div>        
-            <p className='msgLogIn'>Already a user? <Link to='/login'>Login</Link></p>     
+            <p className='msgLogIn'>Already a user? <Link to='/'>Login</Link></p>     
         </Fragment>
     )
 }

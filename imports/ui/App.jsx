@@ -152,7 +152,6 @@ return (
   <div className='main'>    
     {user ? (
       <Fragment>
-        <Header />
         <div className="cellbox">
           {cellElements}
         </div>
@@ -170,15 +169,14 @@ return (
     ) : (
       (
         <Fragment>
-          <Router>
-            
-            
+          <Router>                       
+            {/* <Header /> */}
+            {/* <UserReg /> */}
             <Routes>
-              <Route path="/login" element={<LoginForm />}></Route>
+              <Route path="/" element={<LoginForm />}></Route>
               <Route path="/register" element={<UserReg />}></Route>
             </Routes>
-            {/* <UserReg />
-            <LoginForm /> */}
+            {/* <LoginForm /> */}
                  
           </Router>
 
