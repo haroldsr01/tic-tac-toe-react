@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState, Fragment} from 'react';
+import { useTracker } from 'meteor/react-meteor-data';
+import { LoginForm } from './LoginForm.jsx';
+import { UserReg } from './UserReg.jsx';
 import { Header } from './Header.jsx';
 import { Cells } from './Cells.jsx';
 
@@ -6,6 +9,7 @@ export const App = () => {
   
   // DECLARATIONS
   // Set players & board initial state
+const user = useTracker(() => Meteor.user())
 const playerX = "X" 
 const playerO = "O"
 let isAlive = React.useRef(false);
@@ -117,6 +121,8 @@ const chkCombi = (arrWin,playerInput) =>{
 const chkDraw = () => {
   if (arrInputX.current.length + arrInputO.current.length === 9){
     showmsg(["DRAW"])
+    chkCombi(winCombination,arrInputX.current)  
+    chkCombi(winCombination,arrInputO.current)   
   }
 }
 
@@ -134,22 +140,36 @@ const cellElements = cells.map(cell => (
     />
 ))
 
+const AI = () => {
+  if (arrInputX.current.length > 0) {
+      console.log('im an ai')
+  }
+}
+
+
 return (
-  <div>    
-    <Header />
-    <div className="cellbox">
-      {cellElements}
-    </div>
-    <p className='message'>{showMessage}</p>
-    <div className="playersbutton">
-        <div className='button-area'>                    
-            <button onClick={startGame} id="startbutton">START</button>
-            <button onClick={resetGame} id="resetbutton">RESET</button>
-{/* EXPERIMENTAL FEAUTURES WILL BE DEVELOP LATER */}
-            {/* <button id="humanbutton">VS HUMAN</button>
-            <button id="aibutton" >VS AI</button> */}
+  <div className='main'>    
+    {user ? (
+      <Fragment>
+        <Header />
+        <div className="cellbox">
+          {cellElements}
         </div>
-    </div>
+        <p className='message'>{showMessage}</p>
+        <div className="playersbutton">
+            <div className='button-area'>                    
+                <button onClick={startGame} id="startbutton">START</button>
+                <button onClick={resetGame} id="resetbutton">RESET</button>
+    {/* EXPERIMENTAL FEAUTURES WILL BE DEVELOP LATER */}
+                {/* <button id="humanbutton">VS HUMAN</button>
+                <button id="aibutton" >VS AI</button> */}
+            </div>
+        </div>
+      </Fragment>
+    ) : (
+      // <LoginForm />
+      <UserReg />
+    )}
   </div>
   )
 }
