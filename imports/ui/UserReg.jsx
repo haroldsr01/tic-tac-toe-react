@@ -4,7 +4,7 @@ import React, {useState} from 'react'
 export const UserReg = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [msgReg, setMsgReg] = useState('test')
+    const [msgReg, setMsgReg] = useState('Create An Account')
 
     const register = e => {
         e.preventDefault();
@@ -41,7 +41,7 @@ export const UserReg = () => {
             <div>
                 <button type="submit">Register</button>
             </div>
-            <h1>{msgReg}</h1>
+            <p className='msgReg'>{msgReg}</p>
         </form>
     )
 }

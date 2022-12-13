@@ -192,3 +192,8 @@ button:focus {
 .reg-form > div > button {
   background-color: #62807e;
 }
+
+.reg-form > p {
+  font-family: 'Play', sans-serif;
+  /* font-family: 'Rubik Vinyl', cursive, sans-serif; */
+}
