@@ -1,4 +1,5 @@
 import React, { useState, Fragment} from 'react';
+import {BrowserRouter as Router,Routes,Route,Link} from "react-router-dom";
 import { useTracker } from 'meteor/react-meteor-data';
 import { LoginForm } from './LoginForm.jsx';
 import { UserReg } from './UserReg.jsx';
@@ -167,8 +168,22 @@ return (
         </div>
       </Fragment>
     ) : (
-      // <LoginForm />
-      <UserReg />
+      (
+        <Fragment>
+          <Router>
+            
+            
+            <Routes>
+              <Route path="/login" element={<LoginForm />}></Route>
+              <Route path="/register" element={<UserReg />}></Route>
+            </Routes>
+            {/* <UserReg />
+            <LoginForm /> */}
+                 
+          </Router>
+
+      </Fragment> 
+      )
     )}
   </div>
   )

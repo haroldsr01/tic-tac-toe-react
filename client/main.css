@@ -197,3 +197,43 @@ button:focus {
   font-family: 'Play', sans-serif;
   /* font-family: 'Rubik Vinyl', cursive, sans-serif; */
 }
+
+/* HORIZONTAL LINE WITH CENTERED TEXT */
+
+.hrline {
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap; 
+}
+
+.hrline > span {
+  position: relative;
+  display: inline-block;
+  font-family: 'Play', sans-serif;
+}
+
+.hrline > span:before,
+.hrline > span:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 25vw;
+  height: 1px;
+  background: black;
+}
+
+.hrline > span:before {
+  right: 100%;
+  margin-right: 15px;
+}
+
+.hrline > span:after {
+  left: 100%;
+  margin-left: 15px;
+}
+
+.msgLogIn, .msgReg{
+  font-family: 'Play', sans-serif;
+  text-align: center;
+}
