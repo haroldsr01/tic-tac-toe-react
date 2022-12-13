@@ -147,6 +147,8 @@ const AI = () => {
   }
 }
 
+const logout = () => Meteor.logout();
+
 
 return (
   <div className='main'>    
@@ -161,6 +163,7 @@ return (
             <div className='button-area'>                    
                 <button onClick={startGame} id="startbutton">START</button>
                 <button onClick={resetGame} id="resetbutton">RESET</button>
+                <button onClick={logout} id="logoutbutton">LOGOUT</button>
     {/* EXPERIMENTAL FEAUTURES WILL BE DEVELOP LATER */}
                 {/* <button id="humanbutton">VS HUMAN</button>
                 <button id="aibutton" >VS AI</button> */}
