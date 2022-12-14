@@ -1,4 +1,3 @@
-// import { Meteor } from 'meteor/meteor'
 import React, {Fragment, useState} from 'react'
 import {Link} from 'react-router-dom'
 
@@ -9,7 +8,6 @@ export const UserReg = () => {
 
     const register = e => {
         e.preventDefault();
-
         Accounts.createUser({
             username: username,
             password: password,
@@ -52,11 +50,3 @@ export const UserReg = () => {
         </Fragment>
     )
 }
-        // <div name="register">
-        //     <h2>REGISTER:</h2>
-        //     <form>
-        //         <input type="email" name="registerEmail"/><br/>
-        //         <input type="password" name="registerPassword"/><br/>
-        //         <input type="submit" value="Register"/><br/>
-        //     </form>
-        // </div>

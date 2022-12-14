@@ -3,15 +3,13 @@ import React, {Fragment, useState} from 'react'
 import {Link} from 'react-router-dom'
 
 
-export const LoginForm = () => {
-    // const navigate = useNavigate()
+export const LoginForm = () => {    
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [msgReg, setMsgReg] = useState('Log In')
 
     const submit = e => {
         e.preventDefault();
-
         Meteor.loginWithPassword(username, password, err=>err? setMsgReg(err.reason) : setMsgReg("success!"));
     }
  
@@ -46,7 +44,7 @@ export const LoginForm = () => {
             <div className="hrline">
               <span>OR</span>
             </div>        
-            <p className='msgLogIn'>Need account? <Link to='/register'>Register</Link></p>    
+            <p className='msgLogIn'>Need account? <Link to='/play'>Register</Link></p>    
         </Fragment>       
     )
 }

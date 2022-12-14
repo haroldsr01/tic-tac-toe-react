@@ -1,15 +1,35 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base'
+import { RoomsCollection } from '../imports/api/Rooms';
 
 const SEED_USERNAME = 'meteorite'
 const SEED_PASSWORD = 'password'
+const insertRoom = (room, user) => 
+  RoomsCollection.insert({
+    room: room,
+    userId: user._id,
+    createdAt: new Date(),
+  });
+
 
 Meteor.startup(() => {
+// Create User
     if (!Accounts.findUserByUsername(SEED_USERNAME)){
       Accounts.createUser({
         username: SEED_USERNAME,
         password: SEED_PASSWORD,
       })
+    }
+
+// Insert Room
+
+const user = Accounts.findUserByUsername(SEED_USERNAME);
+
+    if (RoomsCollection.find().count()===0){
+      [
+        'Room1',
+        'Room2'       
+      ].forEach(room => insertRoom(room, user))
     }
 })
 

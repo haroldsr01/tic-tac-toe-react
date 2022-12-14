@@ -160,7 +160,6 @@ button:focus {
   display: flex;
   flex-direction: column;
   height: 100%;
-
   justify-content: center;
   align-items: center;
 }
@@ -236,4 +235,28 @@ button:focus {
 .msgLogIn, .msgReg{
   font-family: 'Play', sans-serif;
   text-align: center;
+}
+
+/* LOBBY */
+.lobby-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.li-rooms {
+  list-style: none;
+}
+
+.btn-createroom, .btn-joinroom, .btn-play {
+  padding: 0;
+  width: 100px;
+  height: 20px;
+  font-family: 'Play', sans-serif;
+  border-radius: 5px;
+}
+
+.li-rooms {
+  font-family: 'Play', sans-serif;
 }
