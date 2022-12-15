@@ -26,21 +26,23 @@ export const Lobby = () => {
     return (
         <div className='lobby'>
             <RoomForm user={user}/>
-            <table>
-                <thead>
-                    <tr>
-                        <th scope='col'>ROOM ID</th>
-                        <th scope='col'>HOST</th>
-                        <th scope='col'>PLAYERS</th>
-                        <th scope='col'>JOIN</th>
-                        <th scope='col'>PLAY</th>
-                        <th scope='col'>CLOSE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    { rooms.map(room => <Room key={room._id} user={user} room={room} closeRoom={closeRoom} joinRoom={joinRoom}/>)}
-                </tbody>
-            </table>                        
+            <div className='table-container'>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope='col'>ROOM ID</th>
+                            <th scope='col'>HOST</th>
+                            <th scope='col'>PLAYERS</th>
+                            <th scope='col'>JOIN</th>
+                            <th scope='col'>PLAY</th>
+                            <th scope='col'>CLOSE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { rooms.map(room => <Room key={room._id} user={user} room={room} closeRoom={closeRoom} joinRoom={joinRoom}/>)}
+                    </tbody>
+                </table>                        
+            </div>
         </div>
     )
 }
