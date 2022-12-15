@@ -44,7 +44,7 @@ export const LoginForm = () => {
             <div className="hrline">
               <span>OR</span>
             </div>        
-            <p className='msgLogIn'>Need account? <Link to='/play'>Register</Link></p>    
+            <p className='msgLogIn'>Need account? <Link to='/register'>Register</Link></p>    
         </Fragment>       
     )
 }
