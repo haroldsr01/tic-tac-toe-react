@@ -15,6 +15,14 @@ export const Lobby = () => {
         // return RoomsCollection.find(userFilter,{}).fetch()});
         return RoomsCollection.find({}).fetch()});
     
+    const closeRoom = (_id) => RoomsCollection.remove(_id);
+    const joinRoom = (_id, username) => RoomsCollection.update(_id,{
+        $set: {
+            "players.1": [username]
+        }
+    })
+    const testLog = (id, user) => console.log("my id is "+id+" "+user)    
+
     return (
         <div className='lobby'>
             <RoomForm user={user}/>
@@ -26,10 +34,11 @@ export const Lobby = () => {
                         <th scope='col'>PLAYERS</th>
                         <th scope='col'>JOIN</th>
                         <th scope='col'>PLAY</th>
+                        <th scope='col'>CLOSE</th>
                     </tr>
                 </thead>
                 <tbody>
-                    { rooms.map(room => <Room key={room._id} room={room}/>)}
+                    { rooms.map(room => <Room key={room._id} user={user} room={room} closeRoom={closeRoom} joinRoom={joinRoom}/>)}
                 </tbody>
             </table>                        
         </div>

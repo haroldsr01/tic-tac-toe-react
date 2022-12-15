@@ -289,7 +289,7 @@ tr:nth-child(odd) td {
   background-color: rgb(245, 245, 245);
 }
 
-.btn-joinroom, .btn-play {
+.btn-joinroom, .btn-play, .btn-close {
   /* display: inline-block; */
   font-family: 'Play', sans-serif;
   width: 50px;
