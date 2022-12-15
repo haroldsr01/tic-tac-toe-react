@@ -17,7 +17,7 @@ export const RoomForm = ({user}) => {
 
         setRoom("");
     }
-console.log(room)
+
     return (
         <form className='room-form' onSubmit={handleSubmit}>
             <input

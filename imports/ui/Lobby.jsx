@@ -7,12 +7,13 @@ import { useTracker } from 'meteor/react-meteor-data';
 export const Lobby = () => {
     // ROOM COLLECTION
     const user = useTracker(() => Meteor.user());
-    const userFilter = user ? { userId: user._id } : {};
+    // const userFilter = user ? { userId: user._id } : {};
     const rooms = useTracker(() => {
         if (!user) {
             return [];
         }
-        return RoomsCollection.find(userFilter,{}).fetch()});
+        // return RoomsCollection.find(userFilter,{}).fetch()});
+        return RoomsCollection.find({}).fetch()});
     
     return (
         <div className='lobby'>
