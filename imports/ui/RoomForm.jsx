@@ -11,6 +11,8 @@ export const RoomForm = ({user}) => {
             room: room.trim(),
             createdAt: new Date(),
             userId: user._id,
+            host: user.username,
+            players: [user.username,user.username]
         })
 
         setRoom("");
