@@ -15,14 +15,28 @@ export const Lobby = () => {
         // return RoomsCollection.find(userFilter,{}).fetch()});
         return RoomsCollection.find({}).fetch()});
     
-    const closeRoom = (_id) => RoomsCollection.remove(_id);
-    const joinRoom = (_id, username) => RoomsCollection.update(_id,{
+    const closeRoom = (_id, host) => {
+        user.username !== host ? console.log (user.username+" "+host):RoomsCollection.remove(_id);
+    }
+
+    const joinRoom = (_id, username) => {RoomsCollection.update(_id,{
         $set: {
             "players.1": [username]
         }
-    })
+    });    
+}
+
+    const leaveRoom = (_id, username) => {RoomsCollection.update(_id,{
+        $set: {
+            "players.1": []
+        }
+    });    
+}
+
+
     const testLog = (id, user) => console.log("my id is "+id+" "+user)    
 
+    
     return (
         <div className='lobby'>
             <RoomForm user={user}/>
@@ -39,7 +53,7 @@ export const Lobby = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        { rooms.map(room => <Room key={room._id} user={user} room={room} closeRoom={closeRoom} joinRoom={joinRoom}/>)}
+                        { rooms.map(room => <Room key={room._id} user={user} room={room} closeRoom={closeRoom} joinRoom={joinRoom} leaveRoom={leaveRoom} testLog={testLog}/>)}
                     </tbody>
                 </table>                        
             </div>
