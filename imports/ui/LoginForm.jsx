@@ -1,16 +1,23 @@
 import { Meteor } from 'meteor/meteor'
-import React, {Fragment, useState} from 'react'
-import {Link} from 'react-router-dom'
-
+import React, {Fragment, useContext, useState} from 'react'
+import {Link, useNavigate} from 'react-router-dom'
+import useAuth from './useAuth.jsx'
 
 export const LoginForm = () => {    
+    const { setAuth } = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [msgReg, setMsgReg] = useState('Log In')
+    const navigate = useNavigate()
 
     const submit = e => {
         e.preventDefault();
-        Meteor.loginWithPassword(username, password, err=>err? setMsgReg(err.reason) : setMsgReg("success!"));
+        Meteor.loginWithPassword(username, password, err=>err
+            ? setMsgReg(err.reason) 
+            : navigate('/lobby')
+            // : setMsgReg("success!")
+            );
+        setAuth({user: username, password: password})
     }
  
     return (       

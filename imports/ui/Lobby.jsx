@@ -3,6 +3,7 @@ import { RoomsCollection } from '../api/Rooms.js';
 import { Room } from './Room.jsx';
 import { RoomForm } from './RoomForm.jsx';
 import { useTracker } from 'meteor/react-meteor-data';
+import { useNavigate } from 'react-router-dom';
 
 export const Lobby = () => {
     // ROOM COLLECTION
@@ -32,10 +33,11 @@ export const Lobby = () => {
         }
     });    
 }
-
+    const navigate = useNavigate()
 
     const testLog = (id, user) => console.log("my id is "+id+" "+user)    
-
+    
+    const logout = () => navigate('/login')
     
     return (
         <div className='lobby'>
@@ -53,10 +55,11 @@ export const Lobby = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        { rooms.map(room => <Room key={room._id} user={user} room={room} closeRoom={closeRoom} joinRoom={joinRoom} leaveRoom={leaveRoom} testLog={testLog} play={testLog}/>)}
+                        { rooms.map(room => <Room key={room._id} user={user} room={room} closeRoom={closeRoom} joinRoom={joinRoom} leaveRoom={leaveRoom} testLog={testLog} navigate={navigate}/>)}
                     </tbody>
-                </table>                        
+                </table>                 
             </div>
+            <button className='btn-logout' onClick={logout}>LOGOUT</button>       
         </div>
     )
 }

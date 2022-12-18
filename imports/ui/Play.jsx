@@ -1,5 +1,6 @@
 import React, { useState, Fragment} from 'react';
 import { Cells } from './Cells.jsx';
+import { useNavigate } from 'react-router-dom';
 
 export const Play = () => {
 // Set players & board initial state
@@ -35,7 +36,7 @@ export const Play = () => {
     const arrInputX = React.useRef([])
     const arrInputO = React.useRef([])  
     const [showMessage, setShowMessage] = React.useState("Just for Fun")
-
+    const navigate = useNavigate()
 
     // FUNCTIONS
 
@@ -139,7 +140,9 @@ export const Play = () => {
     }
     }
 
-    const logout = () => Meteor.logout();
+    const logout = () => {
+        navigate('/login')
+        Meteor.logout() }
     
     return (
         <Fragment>
