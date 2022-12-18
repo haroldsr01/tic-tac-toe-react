@@ -1,12 +1,20 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base'
 import { RoomsCollection } from '../imports/api/Rooms';
+import { GamesCollection } from '../imports/api/Games';
 
 const SEED_USERNAME = 'meteorite'
 const SEED_PASSWORD = 'password'
 const insertRoom = (room, user) => 
   RoomsCollection.insert({
     room: room,
+    userId: user._id,
+    createdAt: new Date(),
+  });
+  
+const newGame = (game, user) => 
+  GamesCollection.insert({
+    game: game,
     userId: user._id,
     createdAt: new Date(),
   });
@@ -31,7 +39,18 @@ const user = Accounts.findUserByUsername(SEED_USERNAME);
         'Room2'       
       ].forEach(room => insertRoom(room, user))
     }
+
+if (GamesCollection.find().count()===0){
+  [
+    'Game1',
+    'Game2'       
+  ].forEach(game => newGame(game, user))
+}
 })
+
+
+
+
 
 
 

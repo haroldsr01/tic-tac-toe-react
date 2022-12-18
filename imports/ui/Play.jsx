@@ -1,8 +1,29 @@
 import React, { useState, Fragment} from 'react';
 import { Cells } from './Cells.jsx';
 import { useNavigate } from 'react-router-dom';
+import { GamesCollection } from '../api/Games.jsx';
+import { useTracker } from 'meteor/react-meteor-data';
 
 export const Play = () => {
+    // const games = useTracker(() => {
+    //     return GamesCollection.find({}).fetch()});
+    //     // return RoomsCollection.find(userFilter,{}).fetch()});
+    // const [game, setGame] = useState("");
+
+    // const handleSubmit = e => {
+    //     e.preventDefault();
+    //     // if (!room) return;
+    //     GamesCollection.insert({
+    //         game: 'testgame',
+    //         createdAt: new Date(),
+    //         // userId: user._id,
+    //         // host: user.username,
+    //         // players: [user.username, null]
+    //     })
+
+    //     setGame("");
+    // }    
+
 // Set players & board initial state
     const playerX = "X" 
     const playerO = "O"

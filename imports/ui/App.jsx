@@ -10,12 +10,14 @@ import { Room } from './Room.jsx';
 import { Layout } from './Layout.jsx';
 import { MainLayout } from './MainLayout.jsx';
 import { RequireAuth } from './RequireAuth.jsx';
+import { RoomsCollection } from '../api/Rooms.js';
 
 export const App = () => {  
 
   const user = useTracker(() => Meteor.user())
   const logout = () => Meteor.logout();
-
+  // const rooms = useTracker(() => {return RoomsCollection.find(userFilter,{}).fetch()});
+    
   
   return (
     <Routes>
@@ -27,7 +29,7 @@ export const App = () => {
         <Route element={<RequireAuth />}>
           <Route element={<MainLayout />}>
             <Route path='lobby' element={<Lobby />} />
-            <Route path='play' element={<Play />} />
+            <Route path='play/room/:roomId' element={<Play />} />
           </Route>
         </Route>
       </Route>
