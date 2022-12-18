@@ -15,20 +15,20 @@ export const Lobby = () => {
         // return RoomsCollection.find(userFilter,{}).fetch()});
         return RoomsCollection.find({}).fetch()});
     
-    const closeRoom = (_id, host) => {
-        user.username !== host ? console.log (user.username+" "+host):RoomsCollection.remove(_id);
+    const closeRoom = (_id) => {
+        RoomsCollection.remove(_id);
     }
 
     const joinRoom = (_id, username) => {RoomsCollection.update(_id,{
         $set: {
-            "players.1": [username]
+            "players.1": username
         }
     });    
 }
 
     const leaveRoom = (_id, username) => {RoomsCollection.update(_id,{
         $set: {
-            "players.1": []
+            "players.1": null
         }
     });    
 }

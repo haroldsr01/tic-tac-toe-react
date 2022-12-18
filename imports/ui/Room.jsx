@@ -7,6 +7,8 @@ export const Room = (props) => {
         console.log(room+" isClick: "+isClick)
     }
 
+    console.log("user is : "+props.user.username)
+    console.log("host is : "+props.room.host)
     return (
         <tr>
             <th scope='row'>{props.room.room}</th>
@@ -15,11 +17,11 @@ export const Room = (props) => {
                 {props.room.players[0]}<br/>
                 {props.room.players[1]}
             </td>
-            {isClick ? <td><button className='btn-joinroom' onClick={()=>{props.joinRoom(props.room._id,props.user.username);toggleClick()}}>JOIN</button></td>:
-            <td><button className='btn-leave' onClick={()=>{props.leaveRoom(props.room._id);toggleClick()}}>LEAVE</button></td>
+            {isClick ? <td><button disabled={props.room.players[1] ? true : false} className='btn-joinroom' onClick={()=>{props.joinRoom(props.room._id,props.user.username);toggleClick()}}>JOIN</button></td>:
+            <td><button disabled={props.user.username !== props.room.players[1] ? true : false } className='btn-leave' onClick={()=>{props.leaveRoom(props.room._id);toggleClick()}}>LEAVE</button></td>
             }                    
             <td><button className='btn-play'>PLAY</button></td>
-            <td><button className='btn-close' onClick={()=>props.closeRoom(props.room._id,props.room.host)}>CLOSE</button></td>            
+            <td><button disabled={props.user.username !== props.room.host ? true : false } className='btn-close' onClick={()=>props.closeRoom(props.room._id,props.room.host)}>CLOSE</button></td>            
         </tr>
 )
 }

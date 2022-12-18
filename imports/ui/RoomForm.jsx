@@ -12,7 +12,7 @@ export const RoomForm = ({user}) => {
             createdAt: new Date(),
             userId: user._id,
             host: user.username,
-            players: [user.username]
+            players: [user.username, null]
         })
 
         setRoom("");
