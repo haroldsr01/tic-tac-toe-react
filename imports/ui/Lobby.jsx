@@ -53,7 +53,7 @@ export const Lobby = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        { rooms.map(room => <Room key={room._id} user={user} room={room} closeRoom={closeRoom} joinRoom={joinRoom} leaveRoom={leaveRoom} testLog={testLog}/>)}
+                        { rooms.map(room => <Room key={room._id} user={user} room={room} closeRoom={closeRoom} joinRoom={joinRoom} leaveRoom={leaveRoom} testLog={testLog} play={testLog}/>)}
                     </tbody>
                 </table>                        
             </div>
