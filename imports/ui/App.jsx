@@ -1,5 +1,5 @@
 import React, { useState, Fragment} from 'react';
-import {Routes, Route} from "react-router-dom";
+import {Routes, Route, useParams} from "react-router-dom";
 import { useTracker } from 'meteor/react-meteor-data';
 import { LoginForm } from './LoginForm.jsx';
 import { UserReg } from './UserReg.jsx';
@@ -17,8 +17,8 @@ export const App = () => {
   const user = useTracker(() => Meteor.user())
   const logout = () => Meteor.logout();
   // const rooms = useTracker(() => {return RoomsCollection.find(userFilter,{}).fetch()});
-    
-  
+  // const { roomId } = useParams()
+  // console.log(roomId)
   return (
     <Routes>
       {/* public routes */}

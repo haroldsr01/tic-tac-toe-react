@@ -6,7 +6,7 @@ export const Room = (props) => {
         setIsClick(isClick => !isClick)
         console.log(room+" isClick: "+isClick)
     }
-
+    
     return (
         <tr>
             <th scope='row'>{props.room.room}</th>
@@ -15,7 +15,8 @@ export const Room = (props) => {
                 {props.room.players[0]}<br/>
                 {props.room.players[1]}
             </td>
-            {isClick ? <td><button disabled={props.room.players[1] ? true : false} className='btn-joinroom' onClick={()=>{props.joinRoom(props.room._id,props.user.username);toggleClick()}}>{props.room.players[1] !== null ? 'FULL' : 'JOIN'}</button></td>:
+            {props.user.username !== props.room.players[1] ? <td><button disabled={props.room.players[1] ? true : false} className='btn-joinroom' onClick={()=>{props.joinRoom(props.room._id,props.user.username);toggleClick()}}>{props.room.players[1] !== null ? 'FULL' : 'JOIN'}</button></td>
+            :
             <td><button disabled={props.user.username !== props.room.players[1] ? true : false } className='btn-leave' onClick={()=>{props.leaveRoom(props.room._id);toggleClick()}}>LEAVE</button></td>
             }                    
             <td><button disabled={props.user.username !==props.room.host ? true : false} className='btn-play' onClick={()=>props.navigate(`/play/room/${props.room._id}`)}>PLAY</button></td>

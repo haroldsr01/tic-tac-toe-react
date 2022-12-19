@@ -1,15 +1,24 @@
 import React, { useState, Fragment} from 'react';
 import { Cells } from './Cells.jsx';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { GamesCollection } from '../api/Games.jsx';
+import { RoomsCollection } from '../api/Rooms.js';
 import { useTracker } from 'meteor/react-meteor-data';
 
-export const Play = () => {
-    // const games = useTracker(() => {
-    //     return GamesCollection.find({}).fetch()});
-    //     // return RoomsCollection.find(userFilter,{}).fetch()});
-    // const [game, setGame] = useState("");
 
+export const Play = () => {
+    const params = useParams()
+    const rooms = useTracker(()=> {
+        return RoomsCollection.find({_id:params.roomId}).fetch()
+    })
+
+    console.log(params.roomId)
+    console.log(rooms)
+    const games = useTracker(() => {
+        return GamesCollection.findOne()});
+        // return RoomsCollection.find(userFilter,{}).fetch()});
+    // const [game, setGame] = useState("");
+    // console.log(games)
     // const handleSubmit = e => {
     //     e.preventDefault();
     //     // if (!room) return;
