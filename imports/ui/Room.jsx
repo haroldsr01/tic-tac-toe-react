@@ -19,7 +19,7 @@ export const Room = (props) => {
             :
             <td><button disabled={props.user.username !== props.room.players[1] ? true : false } className='btn-leave' onClick={()=>{props.leaveRoom(props.room._id);toggleClick()}}>LEAVE</button></td>
             }                    
-            <td><button disabled={props.user.username !==props.room.host ? true : false} className='btn-play' onClick={()=>props.navigate(`/play/room/${props.room._id}`)}>PLAY</button></td>
+            <td><button disabled={props.user.username ===props.room.host || props.user.username === props.room.players[1] ? false : true} className='btn-play' onClick={()=>props.navigate(`/play/room/${props.room._id}`)}>PLAY</button></td>
             <td><button disabled={props.user.username !== props.room.host ? true : false } className='btn-close' onClick={()=>props.closeRoom(props.room._id,props.room.host)}>CLOSE</button></td>            
         </tr>
 )

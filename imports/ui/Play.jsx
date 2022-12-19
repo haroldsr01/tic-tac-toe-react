@@ -14,8 +14,10 @@ export const Play = () => {
 
     console.log(params.roomId)
     console.log(rooms)
-    const games = useTracker(() => {
-        return GamesCollection.findOne()});
+    console.log(rooms[0].moves)
+    // console.log(games)
+    // const games = useTracker(() => {
+    //     return GamesCollection.findOne()});
         // return RoomsCollection.find(userFilter,{}).fetch()});
     // const [game, setGame] = useState("");
     // console.log(games)
@@ -63,43 +65,49 @@ export const Play = () => {
         [2,4,6]
     ]
 
-    const arrInputX = React.useRef([])
-    const arrInputO = React.useRef([])  
+    let arrInputX = rooms[0].arrInputX
+    let arrInputO = rooms[0].arrInputO
+    // const arrInputX = React.useRef([])
+    // const arrInputO = React.useRef([])  
     const [showMessage, setShowMessage] = React.useState("Just for Fun")
     const navigate = useNavigate()
 
     // FUNCTIONS
 
     const handleClick = (id) => {    
-    if (isAlive.current === false && arrInputX.current.length === 0){
+    if (isAlive.current === false && arrInputX.length === 0){
         showmsg(["Please click 'Start'"])
-    } else if (isAlive.current === false && arrInputX.current.length > 0){
+    } else if (isAlive.current === false && arrInputX.length > 0){
         showmsg(["Please click 'Reset'"])
     } else {
-    if (currentPlayer.current === playerX && isAlive.current === true && !arrInputX.current.includes(id) && !arrInputO.current.includes(id)){
-        if (!arrInputX.current.includes(id)){      
+    if (currentPlayer.current === playerX && isAlive.current === true && !arrInputX.includes(id) && !arrInputO.includes(id)){
+        if (!arrInputX.includes(id)){      
         switchTurn()
-        arrInputX.current.push(id)
+        arrInputX.push(id)
         showmsg(msgClicks)
-        setCell(prevCells => {
-            return prevCells.map((cell) => {        
-            return cell.id === id ?{...cell, value: "X"} : cell
-            })
-        })
-        chkCombi(winCombination,arrInputX.current)    
+        // RoomsCollection.findAndModify({
+        //     query:{_id:params.roomId,moves:id},
+        //     update:{moves:{id:id,value:"X"}}
+        // })
+        // setCell(prevCells => {
+        //     return prevCells.map((cell) => {        
+        //     return cell.id === id ?{...cell, value: "X"} : cell
+        //     })
+        // })
+        chkCombi(winCombination,arrInputX)    
         chkDraw()  
         }
-        } else if (currentPlayer.current === playerO && isAlive.current === true && !arrInputX.current.includes(id) && !arrInputO.current.includes(id)){
-        if (!arrInputO.current.includes(id)){
+        } else if (currentPlayer.current === playerO && isAlive.current === true && !arrInputX.includes(id) && !arrInputO.includes(id)){
+        if (!arrInputO.includes(id)){
             switchTurn()
-            arrInputO.current.push(id)
+            arrInputO.push(id)
             showmsg(msgClicks)
             setCell(prevCells => {
             return prevCells.map((cell) => {        
                 return cell.id === id ?{...cell, value: "O"} : cell
             })
             })
-            chkCombi(winCombination,arrInputO.current)        
+            chkCombi(winCombination,arrInputO)        
             chkDraw()  
         }
     }}
@@ -109,7 +117,7 @@ export const Play = () => {
     }  
 
     const startGame = () => {
-    if (arrInputX.current.length === 0){ 
+    if (arrInputX.length === 0){ 
         isAlive.current = true
         showmsg(['Play for FUN'])  
     } else {
@@ -119,14 +127,29 @@ export const Play = () => {
     const resetGame = () => {
     isAlive.current = true;
     currentPlayer.current = playerX;
-    arrInputX.current = []
-    arrInputO.current = []
+    arrInputX = []
+    arrInputO = []
     setShowMessage("Just for Fun")
-    setCell(prevCells => {
-        return prevCells.map((cell) => {
-        return {...cell, value: ""}
-        })
-    })
+    RoomsCollection.update(
+        {_id:params.roomId},
+        {$set:{moves:[
+            {id:0, value:""},
+            {id:1, value:""},
+            {id:2, value:""},
+            {id:3, value:""},
+            {id:4, value:""},
+            {id:5, value:""},
+            {id:6, value:""},
+            {id:7, value:""},
+            {id:8, value:""}
+            ]}}
+    )
+
+    // setCell(prevCells => {
+    //     return prevCells.map((cell) => {
+    //     return {...cell, value: ""}
+    //     })
+    // })
     }
 
     const randomNum = (array) => {
@@ -143,10 +166,10 @@ export const Play = () => {
     }    
 
     const chkDraw = () => {
-    if (arrInputX.current.length + arrInputO.current.length === 9){
+    if (arrInputX.length + arrInputO.length === 9){
         showmsg(["DRAW"])
-        chkCombi(winCombination,arrInputX.current)  
-        chkCombi(winCombination,arrInputO.current)   
+        chkCombi(winCombination,arrInputX)  
+        chkCombi(winCombination,arrInputO)   
     }
     }
 
@@ -155,7 +178,7 @@ export const Play = () => {
     setShowMessage(message)
     }
 
-    const cellElements = cells.map(cell => (
+    const cellElements = rooms[0].moves.map(cell => (
         <Cells 
             key={cell.id}
             handleClick={()=>handleClick(cell.id)}          
@@ -165,7 +188,7 @@ export const Play = () => {
     ))
 
     const AI = () => {
-    if (arrInputX.current.length > 0) {
+    if (arrInputX.length > 0) {
         console.log('im an ai')
     }
     }

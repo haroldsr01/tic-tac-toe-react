@@ -12,7 +12,20 @@ export const RoomForm = ({user}) => {
             createdAt: new Date(),
             userId: user._id,
             host: user.username,
-            players: [user.username, null]
+            players: [user.username, null],
+            moves: [
+                {id:0, value:"X"},
+                {id:1, value:"O"},
+                {id:2, value:"X"},
+                {id:3, value:"O"},
+                {id:4, value:"X"},
+                {id:5, value:"O"},
+                {id:6, value:"X"},
+                {id:7, value:"O"},
+                {id:8, value:"X"}
+                ],        
+            arrInputX:[],
+            arrInputO:[],
         })
 
         setRoom("");
