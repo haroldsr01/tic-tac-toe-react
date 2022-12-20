@@ -13,6 +13,9 @@ export const RoomForm = ({user}) => {
             userId: user._id,
             host: user.username,
             players: [user.username, null],
+            playerXisAlive: false,
+            playerOisAlive: false,
+            currentPlayer: user.username,
             moves: [
                 {id:0, value:"X"},
                 {id:1, value:"O"},
