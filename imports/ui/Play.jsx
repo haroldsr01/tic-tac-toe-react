@@ -60,6 +60,7 @@ export const Play = () => {
 
     const msgWinner = ['You Win', "Congratulations!!!","You've got some skills","Impossible, you beat me!"]     
     const msgClicks = ['Aha!', 'Gotcha', 'Nice', 'Excellent', 'I know it', 'Super Nice', 'Wonderful', 'Awesome']
+    const msgTest = ['Working', 'It Clicks', "You click it"]
     const winCombination =[
         [0,1,2],
         [3,4,5],
@@ -115,7 +116,7 @@ export const Play = () => {
         //     return cell.id === id ?{...cell, value: "X"} : cell
         //     })
         // })
-        chkCombi(winCombination,arrInputX)    
+        chkCombi(winCombination,rooms[0].arrInputX)    
         chkDraw()  
         }
         } else if (currentPlayer === playerO && playerO === user.username && playerOisAlive === true && !arrInputX.includes(id) && !arrInputO.includes(id)){
@@ -140,7 +141,7 @@ export const Play = () => {
             //     return cell.id === id ?{...cell, value: "O"} : cell
             // })
             // })
-            chkCombi(winCombination,arrInputO)        
+            chkCombi(winCombination,rooms[0].arrInputO)        
             chkDraw()  
         }
     }}
@@ -190,8 +191,8 @@ export const Play = () => {
                 arrInputX: [],
                 arrInputO: [],
                 currentPlayer: playerX,
-                playerXisAlive: false,
-                playerOisAlive: false,            
+                playerXisAlive: true,
+                playerOisAlive: true,            
             },
         }
         
@@ -213,7 +214,7 @@ export const Play = () => {
         if (arrWin[i].every(el => playerInput.includes(el))){      
             // isAlive.current = false;          
             showmsg(msgWinner)                      
-        } 
+        } else (console.log("arrInputX: "+arrInputX))
     }
     }    
 
