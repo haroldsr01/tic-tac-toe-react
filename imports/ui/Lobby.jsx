@@ -20,7 +20,7 @@ export const Lobby = () => {
     const newGame = useTracker(() => {
         return GamesCollection.findOne()
     })
-    console.log(newGame._id+" "+newGame.game)
+    // console.log(newGame._id+" "+newGame.game)
 
     const closeRoom = (_id) => {
         RoomsCollection.remove(_id);

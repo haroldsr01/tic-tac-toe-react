@@ -82,9 +82,9 @@ export const Play = () => {
     // FUNCTIONS
 
     const handleClick = (id) => {    
-    if (playerXisAlive === false && arrInputX.length === 0){
+    if (playerXisAlive === false && arrInputX.length === 0 && rooms[0].msgWinner){
         showmsg(["Please click 'Start'"])
-    } else if (playerXisAlive === false && arrInputX.length > 0){
+    } else if (playerXisAlive === false && arrInputX.length > 0 && rooms[0].msgWinner){
         showmsg(["Please click 'Reset'"])
     } else {
     if (currentPlayer === playerX && playerX === user.username && playerXisAlive === true && !arrInputX.includes(id) && !arrInputO.includes(id)){
@@ -118,7 +118,7 @@ export const Play = () => {
         // })
         let temparrInputX = [...arrInputX,id]
         console.log(temparrInputX)
-        chkCombi(winCombination,temparrInputX)    
+        chkCombi(winCombination,temparrInputX,currentPlayer)    
         chkDraw()  
         }
         } else if (currentPlayer === playerO && playerO === user.username && playerOisAlive === true && !arrInputX.includes(id) && !arrInputO.includes(id)){
@@ -144,8 +144,9 @@ export const Play = () => {
             // })
             // })
             let temparrInputO = [...arrInputO,id]
-            chkCombi(winCombination,temparrInputO)        
+            chkCombi(winCombination,temparrInputO,currentPlayer)        
             chkDraw()  
+            
         }
     }}
     }
@@ -195,7 +196,8 @@ export const Play = () => {
                 arrInputO: [],
                 currentPlayer: playerX,
                 playerXisAlive: true,
-                playerOisAlive: true,            
+                playerOisAlive: true,           
+                msgWinner: null, 
             },
         }
         
@@ -212,21 +214,28 @@ export const Play = () => {
         return Math.floor(Math.random()*array.length)
     }
 
-    const chkCombi = (arrWin,playerInput) =>{
+    const chkCombi = (arrWin,playerInput,currentPlayer) =>{
     for (let i=0; i<arrWin.length; i++){
         if (arrWin[i].every(el => playerInput.includes(el))){      
             // isAlive.current = false;  
+            // let msg = showmsg(msgWinner)
             RoomsCollection.update(
                 {_id:params.roomId},
                 {
                     $set:{                        
                         playerXisAlive: false,
-                        playerOisAlive: false,            
+                        playerOisAlive: false,    
+                        msgWinner: `${currentPlayer} wins`        
+                        // msgWinner: `Player ${currentPlayer} wins`,      
+                        // msgWinner: `${showmsg(msgWinner)}`                   
+                        // msgWinner: [`${msg}`]                   
                     },
                 }
                 
             )
-            showmsg(msgWinner)                      
+            // showmsg(msgWinner)                    
+            // showmsg([rooms[0].msgWinner])                    
+            
         } else (console.log("arrInputX: "+arrInputX))
     }
     }    
@@ -262,13 +271,14 @@ export const Play = () => {
     const logout = () => {
         navigate('/login')
         Meteor.logout() }
+    console.log(rooms[0].msgwinner)
     
     return (
         <Fragment>
             <div className="cellbox">
                 {cellElements}
                 </div>
-                    <p className='message'>{showMessage}</p>
+                    <p className='message'>{playerXisAlive ? showMessage : rooms[0].msgWinner}</p>
                     <div className="playersbutton">
                         <div className='button-area'>                    
                             <button onClick={startGame} id="startbutton">START</button>

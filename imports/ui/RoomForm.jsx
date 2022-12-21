@@ -29,6 +29,7 @@ export const RoomForm = ({user}) => {
                 ],        
             arrInputX:[],
             arrInputO:[],
+            msgWinner: null,
         })
 
         setRoom("");
