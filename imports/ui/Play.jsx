@@ -116,7 +116,9 @@ export const Play = () => {
         //     return cell.id === id ?{...cell, value: "X"} : cell
         //     })
         // })
-        chkCombi(winCombination,rooms[0].arrInputX)    
+        let temparrInputX = [...arrInputX,id]
+        console.log(temparrInputX)
+        chkCombi(winCombination,temparrInputX)    
         chkDraw()  
         }
         } else if (currentPlayer === playerO && playerO === user.username && playerOisAlive === true && !arrInputX.includes(id) && !arrInputO.includes(id)){
@@ -141,7 +143,8 @@ export const Play = () => {
             //     return cell.id === id ?{...cell, value: "O"} : cell
             // })
             // })
-            chkCombi(winCombination,rooms[0].arrInputO)        
+            let temparrInputO = [...arrInputO,id]
+            chkCombi(winCombination,temparrInputO)        
             chkDraw()  
         }
     }}
@@ -212,7 +215,17 @@ export const Play = () => {
     const chkCombi = (arrWin,playerInput) =>{
     for (let i=0; i<arrWin.length; i++){
         if (arrWin[i].every(el => playerInput.includes(el))){      
-            // isAlive.current = false;          
+            // isAlive.current = false;  
+            RoomsCollection.update(
+                {_id:params.roomId},
+                {
+                    $set:{                        
+                        playerXisAlive: false,
+                        playerOisAlive: false,            
+                    },
+                }
+                
+            )
             showmsg(msgWinner)                      
         } else (console.log("arrInputX: "+arrInputX))
     }
