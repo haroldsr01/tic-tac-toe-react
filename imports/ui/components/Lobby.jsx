@@ -1,13 +1,13 @@
 import React from 'react';
-import { RoomsCollection } from '../api/Rooms.js';
-import { GamesCollection } from '../api/Games.jsx';
+import { RoomsCollection } from '../../api/Rooms.js';
+import { GamesCollection } from '../../api/Games.jsx';
 import { Room } from './Room.jsx';
 import { RoomForm } from './RoomForm.jsx';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useNavigate } from 'react-router-dom';
 
 export const Lobby = () => {
-    // MONGODB COLLECTION
+
     const user = useTracker(() => Meteor.user());
     // const userFilter = user ? { userId: user._id } : {};
     const rooms = useTracker(() => {
@@ -19,8 +19,7 @@ export const Lobby = () => {
 
     const newGame = useTracker(() => {
         return GamesCollection.findOne()
-    })
-    // console.log(newGame._id+" "+newGame.game)
+    })    
 
     const closeRoom = (_id) => {
         RoomsCollection.remove(_id);

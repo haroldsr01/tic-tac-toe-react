@@ -1,7 +1,7 @@
 import React from 'react'
 import { Outlet } from "react-router-dom";
-import { LoginForm } from './LoginForm';
-import { Header } from './Header';
+import { LoginForm } from '../components/LoginForm';
+import { Header } from '../components/Header';
 
 export const Layout = () => {
     return (

@@ -25,8 +25,3 @@ export const Room = (props) => {
         </tr>
 )
 }
-// <li className='li-rooms'>
-//     <button className='btn-joinroom'>JOIN</button>
-//     <button className='btn-play'>PLAY</button>
-//     {room.room}{room.host}{room.players}
-// </li>

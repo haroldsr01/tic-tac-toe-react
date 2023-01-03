@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { RoomsCollection } from '../api/Rooms';
+import { RoomsCollection } from '../../api/Rooms';
 
 export const RoomForm = ({user}) => {
     const [room, setRoom] = useState("");
