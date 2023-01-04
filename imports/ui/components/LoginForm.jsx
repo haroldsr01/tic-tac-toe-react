@@ -7,15 +7,17 @@ export const LoginForm = () => {
     const { setAuth } = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false)
     const [msgReg, setMsgReg] = useState('Log In')
     const navigate = useNavigate()
+
+    const toggleShowPassword = () => setShowPassword(showPassword ? false : true)
 
     const submit = e => {
         e.preventDefault();
         Meteor.loginWithPassword(username, password, err=>err
             ? setMsgReg(err.reason) 
-            : navigate('/lobby')
-            // : setMsgReg("success!")
+            : navigate('/auth/lobby')            
             );
         setAuth({user: username, password: password})
     }

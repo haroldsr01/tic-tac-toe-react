@@ -42,8 +42,11 @@ export const Lobby = () => {
 
     const testLog = (id, user) => console.log("my id is "+id+" "+user)    
     
-    const logout = () => navigate('/login')
-    
+    // const logout = () => navigate('/login')
+    const logout = () => {
+        navigate('/login')
+        Meteor.logout() }
+
     return (
         <div className='lobby'>
             <RoomForm user={user}/>

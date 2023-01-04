@@ -5,10 +5,6 @@ import { App } from '/imports/ui/App.jsx';
 import { AuthProvider } from '../imports/ui/AuthProvider.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-// Meteor.startup(() => {
-//   render(<App />, document.getElementById('react-target'));
-// });
-
 Meteor.startup(() => {
   render(
     <React.StrictMode>

@@ -182,7 +182,6 @@ export const Play = () => {
     const logout = () => {
         navigate('/login')
         Meteor.logout() }
-    console.log(rooms[0].msgwinner)
     
     return (
         <Fragment>
