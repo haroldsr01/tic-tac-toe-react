@@ -5,6 +5,11 @@ export const UserReg = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [msgReg, setMsgReg] = useState('Create An Account')
+    const [showPassword, setShowPassword] = useState('password')
+    const [classEye, setClassEye] = useState('fa-solid fa-eye')
+
+    const toggleShowPassword = () => {setShowPassword(showPassword === 'password' ? 'text' : 'password'); 
+    setClassEye(classEye === 'fa-solid fa-eye' ? "fa-solid fa-eye-slash" : 'fa-solid fa-eye')}
 
     const register = e => {
         e.preventDefault();
@@ -28,15 +33,16 @@ export const UserReg = () => {
                         onChange={e => setUsername(e.target.value)}                
                     />
                 </div>
-                <div>
+                <div className='password-container'>
                     <label htmlFor='password'>Password</label>
                     <input
-                        type="password"
+                        type={showPassword}
                         placeholder='Password'
                         name='password'
                         required
                         onChange={e => setPassword(e.target.value)}
                     />
+                    <i className={classEye} id='togglePassword' onClick={toggleShowPassword}></i>
                 </div>
                 <div>
                     <button type="submit">Register</button>

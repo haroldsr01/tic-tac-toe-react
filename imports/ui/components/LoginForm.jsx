@@ -7,11 +7,13 @@ export const LoginForm = () => {
     const { setAuth } = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false)
+    const [showPassword, setShowPassword] = useState('password')
+    const [classEye, setClassEye] = useState('fa-solid fa-eye')
     const [msgReg, setMsgReg] = useState('Log In')
     const navigate = useNavigate()
 
-    const toggleShowPassword = () => setShowPassword(showPassword ? false : true)
+    const toggleShowPassword = () => {setShowPassword(showPassword === 'password' ? 'text' : 'password'); 
+    setClassEye(classEye === 'fa-solid fa-eye' ? "fa-solid fa-eye-slash" : 'fa-solid fa-eye')}
 
     const submit = e => {
         e.preventDefault();
@@ -21,7 +23,7 @@ export const LoginForm = () => {
             );
         setAuth({user: username, password: password})
     }
- 
+     
     return (       
         <Fragment>
             <form onSubmit={submit} className='login-form'>
@@ -35,15 +37,19 @@ export const LoginForm = () => {
                         onChange={e => setUsername(e.target.value)}                
                     />
                 </div>
-                <div>
+                <div className='password-container'>
                     <label htmlFor='password'>Password</label>
                     <input
-                        type="password"
+                        type={showPassword}
                         placeholder='Password'
                         name='password'
                         required
                         onChange={e => setPassword(e.target.value)}
                     />
+                    <i className={classEye} id='togglePassword' onClick={toggleShowPassword}></i>
+                    {/* <br/>
+                    <label htmlFor='showPass'>Show Password</label>
+                    <input type="checkbox" onClick={toggleShowPassword} name="showPass"/> */}
                 </div>
                 <div>
                     <button type="submit">Log In</button>
