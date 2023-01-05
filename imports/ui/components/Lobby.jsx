@@ -7,7 +7,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { useNavigate } from 'react-router-dom';
 
 export const Lobby = () => {
-
+    Meteor.subscribe('rooms.public')
     const user = useTracker(() => Meteor.user());
     // const userFilter = user ? { userId: user._id } : {};
     const rooms = useTracker(() => {
