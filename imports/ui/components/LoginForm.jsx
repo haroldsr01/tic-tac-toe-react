@@ -47,9 +47,6 @@ export const LoginForm = () => {
                         onChange={e => setPassword(e.target.value)}
                     />
                     <i className={classEye} id='togglePassword' onClick={toggleShowPassword}></i>
-                    {/* <br/>
-                    <label htmlFor='showPass'>Show Password</label>
-                    <input type="checkbox" onClick={toggleShowPassword} name="showPass"/> */}
                 </div>
                 <div>
                     <button type="submit">Log In</button>

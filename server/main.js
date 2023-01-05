@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base'
 import { RoomsCollection } from '../imports/api/Rooms';
 import { GamesCollection } from '../imports/api/Games';
+import '../imports/api/tasksMethods'
 
 const SEED_USERNAME = 'meteorite'
 const SEED_PASSWORD = 'password'
@@ -22,30 +23,30 @@ const newGame = (game, user) =>
 
 Meteor.startup(() => {
 // Create User
-    if (!Accounts.findUserByUsername(SEED_USERNAME)){
-      Accounts.createUser({
-        username: SEED_USERNAME,
-        password: SEED_PASSWORD,
-      })
-    }
+    // if (!Accounts.findUserByUsername(SEED_USERNAME)){
+    //   Accounts.createUser({
+    //     username: SEED_USERNAME,
+    //     password: SEED_PASSWORD,
+    //   })
+    // }
 
 // Insert Room
 
-const user = Accounts.findUserByUsername(SEED_USERNAME);
+// const user = Accounts.findUserByUsername(SEED_USERNAME);
 
-    if (RoomsCollection.find().count()===0){
-      [
-        'Room1',
-        'Room2'       
-      ].forEach(room => insertRoom(room, user))
-    }
+//     if (RoomsCollection.find().count()===0){
+//       [
+//         'Room1',
+//         'Room2'       
+//       ].forEach(room => insertRoom(room, user))
+//     }
 
-if (GamesCollection.find().count()===0){
-  [
-    'Game1',
-    'Game2'       
-  ].forEach(game => newGame(game, user))
-}
+// if (GamesCollection.find().count()===0){
+//   [
+//     'Game1',
+//     'Game2'       
+//   ].forEach(game => newGame(game, user))
+// }
 })
 
 

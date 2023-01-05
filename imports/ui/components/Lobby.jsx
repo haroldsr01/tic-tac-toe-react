@@ -17,26 +17,30 @@ export const Lobby = () => {
         // return RoomsCollection.find(userFilter,{}).fetch()});
         return RoomsCollection.find({}).fetch()});
 
-    const newGame = useTracker(() => {
-        return GamesCollection.findOne()
-    })    
+    // const newGame = useTracker(() => {
+    //     return GamesCollection.findOne()
+    // })    
 
     const closeRoom = (_id) => {
-        RoomsCollection.remove(_id);
+        Meteor.call('rooms.close',_id);
     }
 
-    const joinRoom = (_id, username) => {RoomsCollection.update(_id,{
-        $set: {
-            "players.1": username
-        }
-    });    
+    const joinRoom = (_id) => {
+        Meteor.call('rooms.join',_id)
+        // RoomsCollection.update(_id,{
+        // $set: {
+        //     "players.1": username
+        // }
+        // });    
 }
 
-    const leaveRoom = (_id, username) => {RoomsCollection.update(_id,{
-        $set: {
-            "players.1": null
-        }
-    });    
+    const leaveRoom = (_id) => {
+        Meteor.call('rooms.leave',_id)
+        // RoomsCollection.update(_id,{
+        // $set: {
+        //     "players.1": null
+        // }
+        // });    
 }
     const navigate = useNavigate()
 
