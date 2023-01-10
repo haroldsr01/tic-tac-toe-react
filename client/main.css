@@ -369,13 +369,14 @@ tr:nth-child(odd) td {
   z-index: 3;
   background-color: white;
   border-radius: 5px;
-  padding: 10px; 
+  padding: 5px; 
+  text-align: center; 
 }
 
-.modal-area {
+/* .modal-area {
   display: flex;
   align-items: flex-start;
-}
+} */
 
 /* .close-button {
   position:absolute;
@@ -396,6 +397,7 @@ tr:nth-child(odd) td {
 
 .modal-content {
   margin-top: 10px;
+  font-family: 'Play', sans-serif;
 }
 
 .btn-modal {
