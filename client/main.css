@@ -358,3 +358,52 @@ tr:nth-child(odd) td {
   cursor: pointer;
   color: #62807e;
 }
+
+.modal {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 70px;
+  z-index: 3;
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px; 
+}
+
+.modal-area {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* .close-button {
+  position:absolute;
+  right: 20px;
+  top: 15px;
+  cursor: pointer;
+} */
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.modal-content {
+  margin-top: 10px;
+}
+
+.btn-modal {
+  display: flex;
+  justify-content: space-around;  
+}
+
+.btn-logout {
+  width: 70px;
+  height: 20px;
+}

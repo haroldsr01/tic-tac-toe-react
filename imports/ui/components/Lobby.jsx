@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RoomsCollection } from '../../api/Rooms.js';
 import { GamesCollection } from '../../api/Games.jsx';
 import { Room } from './Room.jsx';
 import { RoomForm } from './RoomForm.jsx';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useNavigate } from 'react-router-dom';
+import { Modal } from './Modal.jsx';
+// import Button from 'react-bootstrap/Button';
+// import Modal from 'react-bootstrap/Modal';
 
 export const Lobby = () => {
     Meteor.subscribe('rooms.public')
@@ -51,6 +54,11 @@ export const Lobby = () => {
         navigate('/login')
         Meteor.logout() }
 
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    console.log(show)
     return (
         <div className='lobby'>
             <RoomForm user={user}/>
@@ -71,7 +79,30 @@ export const Lobby = () => {
                     </tbody>
                 </table>                 
             </div>
-            <button className='btn-logout' onClick={logout}>LOGOUT</button>       
+            {/* <button className='btn-logout' onClick={logout}>LOGOUT</button>      */}
+            <button onClick={()=> setShow(true)} >LOGOUT</button>
+            <Modal isOpened={show} onClose={()=> setShow(false)}>Are you sure you want to logout?
+                <div className="btn-modal">
+                    <button className='btn-logout' onClick={logout}>Yes</button>
+                    <button className='btn-logout' onClick={()=> setShow(false)}>No</button>
+                </div>
+            </Modal>
+            {/* <Button variant='primary' onClick={handleShow}>Launch demo modal</Button>
+            <Modal 
+                show={show} 
+                onHide={handleClose}
+                // backdrop='static'
+                // keyboard={false}
+                >
+                <Modal.Header closeButton>
+                    <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>This is my modal body.</Modal.Body>
+                <Modal.Footer>
+                    <Button variant='secondary' onClick={handleClose}>Close</Button>
+                    <Button variant='primary' onClick={handleClose}>Save Changes</Button>
+                </Modal.Footer>
+            </Modal> */}
         </div>
     )
 }
