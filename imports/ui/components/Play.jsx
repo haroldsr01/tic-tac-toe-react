@@ -1,9 +1,9 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import { Cells } from './Cells.jsx';
 import { useNavigate, useParams } from 'react-router-dom';
 import { RoomsCollection } from '../../api/Rooms.js';
 import { useTracker } from 'meteor/react-meteor-data';
-
+import { Modal } from './Modal.jsx';
 
 export const Play = () => {
     const params = useParams()      
@@ -189,18 +189,30 @@ export const Play = () => {
     const logout = () => {
         navigate('/login')
         Meteor.logout() }
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     
     return (
         <Fragment>
             <div className="cellbox">
                 {cellElements}
-                </div>
-                    <p className='message'>{playerXisAlive ? showMessage : rooms[0].msgWinner}</p>
-                    <div className="playersbutton">
-                        <div className='button-area'>                    
-                            <button onClick={()=>{startGame(params.roomId)}} id="startbutton">START</button>
-                            <button onClick={()=>{resetGame(params.roomId, playerX)}} id="resetbutton">RESET</button>
-                            <button onClick={logout} id="logoutbutton">LOGOUT</button>
+            </div>
+            <p className='message'>{playerXisAlive ? showMessage : rooms[0].msgWinner}</p>
+            <div className="playersbutton">
+                <div className='button-area'>                    
+                    <button onClick={()=>{startGame(params.roomId)}} id="startbutton">START</button>
+                    <button onClick={()=>{resetGame(params.roomId, playerX)}} id="resetbutton">RESET</button>
+                    {/* <button onClick={logout} id="logoutbutton">LOGOUT</button> */}
+                    <button onClick={()=> setShow(true)} >LOGOUT</button>
+                    <Modal isOpened={show} onClose={()=> setShow(false)}>Are you sure you want to logout?
+                        <div className="btn-modal">
+                            <button className='btn-logout' onClick={logout}>Yes</button>
+                            <button className='btn-logout' onClick={()=> setShow(false)}>No</button>
+                        </div>
+                    </Modal>
                 </div>
             </div>
         </Fragment>
